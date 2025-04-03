@@ -89,8 +89,8 @@ h1 {
 @media (max-width: 768px) {
   .home {
     background-image: url('../assets/main-background-mobile.webp') !important;
-    background-position: top center;
-    background-size: 100% auto;
+    background-position: top;
+    background-size: 100%;
     background-repeat: no-repeat;
     position: relative;
     justify-content: flex-start;
@@ -102,7 +102,7 @@ h1 {
       left: 0;
       right: 0;
       bottom: 0;
-      height: 40%;
+      height: 50%;
       /* Высота градиента снизу */
       background: rgb(19, 20, 22);
       background: linear-gradient(180deg, rgba(19, 20, 22, 1) 0%, rgba(0, 0, 0, 1) 85%);
