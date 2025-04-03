@@ -7,7 +7,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/confirmsendig" element={<ConfirmSending/>}/>
+        <Route path="/confirmsending" element={<ConfirmSending/>}/>
       </Routes>
     </Router>
   );
