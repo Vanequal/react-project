@@ -1,7 +1,7 @@
 import React from 'react';
 import DLCBadge from './DLCBadge';
 import ActivationTimer from './ActivationTimer';
-import DLCImg from '../../assets/DLC-img.png';
+import DLCImg from '../../assets/DLC-img.jpeg';
 import styles from '../../styles/ConfirmCard.module.scss';
 
 const ConfirmCard: React.FC = () => {
