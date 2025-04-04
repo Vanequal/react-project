@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ConfirmCard from '../components/UI/ConfirmCard';
 import ProfileCheckCard from '../components/UI/ProfileCheckCard';
-import Button from '../components/UI/Button';
 import ButtonInline from '../components/UI/ButtonInline';
 import TelegramAnimation from '../components/UI/TelegramAnimation';
 import DLCBadge from '../components/UI/DLCBadge';
