@@ -4,7 +4,13 @@ import ActivationTimer from './ActivationTimer';
 import DLCImg from '../../assets/DLC-img.jpeg';
 import styles from '../../styles/ConfirmCard.module.scss';
 
-const ConfirmCard: React.FC = () => {
+interface ConfirmCardProps {
+  gameTitle: string;
+  orderNumber: string;
+  timerTime: string;
+}
+
+const ConfirmCard: React.FC<ConfirmCardProps> = ({ gameTitle, orderNumber, timerTime }) => {
   return (
     <div className={styles.confirmCard}>
       <div className={styles.imageContainer}>
@@ -12,13 +18,13 @@ const ConfirmCard: React.FC = () => {
       </div>
       
       <h1 className={styles.cardTitle}>
-       <p>Command &amp; Conquer™ Red Alert™ 3- Uprising</p>
+        <p>{gameTitle}</p>
       </h1>
       
       <div className={styles.orderInfo}>
-        <span className={styles.orderNumber}><p>Заказ #99999999</p></span>
+        <span className={styles.orderNumber}><p>{orderNumber}</p></span>
         <DLCBadge />
-        <ActivationTimer time="00:00:00" />
+        <ActivationTimer time={timerTime} />
       </div>
       
       <div className={styles.footerText}>

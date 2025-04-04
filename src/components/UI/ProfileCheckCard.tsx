@@ -3,31 +3,87 @@ import styles from '../../styles/ProfileCheckCard.module.scss';
 import Button from './Button';
 import ButtonInline from './ButtonInline';
 import TelegramAnimation from './TelegramAnimation';
-import avatar from '../../assets/avatar.png';
+import defaultAvatar from '../../assets/avatar.png';
 
-const ProfileCheckCard: React.FC = () => {
+interface ProfileCheckCardProps {
+  headerText: string;
+  profileUrl: string;
+  buttoninlinetext: string;
+  buttonMainText: string;
+  showMainButton?: boolean;
+  friendRequestMessage?: boolean | string;
+  avatarSrc?: string;
+  steamNickname: string;
+  showSellerLink?: boolean;
+  showGame?: boolean;
+  showGameEdition?: boolean;
+  showClose?: boolean;
+}
+
+const ProfileCheckCard: React.FC<ProfileCheckCardProps> = ({
+  headerText,
+  profileUrl,
+  buttoninlinetext,
+  showMainButton = true,
+  friendRequestMessage = false,
+  avatarSrc,
+  buttonMainText,
+  steamNickname,
+  showSellerLink = false,
+  showGame = false,
+  showGameEdition = false,
+  showClose = false
+}) => {
   const [lang, setLang] = useState<'RU' | 'ENG'>('RU');
+
+  let messageHtml = '';
+  if (friendRequestMessage === true) {
+    messageHtml =
+      'Вам отправлен запрос на добавление друзей в <br /> Steam. Вам необходимо принять нашего бота с <br /> никнеймом “Bot Name” в друзья. Далее вам <br /> отправят купленный товар';
+  } else if (typeof friendRequestMessage === 'string') {
+    messageHtml = friendRequestMessage;
+  }
 
   return (
     <div className={styles.profileCheckCard}>
-      <h1 className={styles.header}>Проверка профиля</h1>
-      
+      <h1 className={styles.header}>{headerText}</h1>
+
       <div className={styles.avatarWrapper}>
-        <img src={avatar} alt="Avatar" className={styles.avatar} />
+        <img src={avatarSrc || defaultAvatar} alt="Avatar" className={styles.avatar} />
       </div>
-      
+
       <div className={styles.profileText}>
-        <p>Steam никнейм покупателя. Проверьте <br /> перед покупкой!{' '} <br /></p>
-        <a href="https://steamcommunity.com/profiles/steamid64" target="_blank" rel="noopener noreferrer">
-          https://steamcommunity.com/profiles/steamid64
+        <p>
+          <p dangerouslySetInnerHTML={{ __html: steamNickname }} />
+        </p>
+        <a href={profileUrl} target="_blank" rel="noopener noreferrer">
+          {profileUrl}
         </a>
+        {messageHtml && (
+          <p dangerouslySetInnerHTML={{ __html: messageHtml }} />
+        )}
       </div>
-      
+
       <div className={styles.buttons}>
-        <Button>Это мой аккаунт 1 мин 59 с</Button>
-        <ButtonInline>Сменить аккаунт</ButtonInline>
+        {showMainButton && <Button>{buttonMainText}</Button>}
+        <ButtonInline>{buttoninlinetext}</ButtonInline>
+        {showSellerLink && (
+          <a href="#" style={{ color: 'white' }}>
+            Связаться с продавцом
+          </a>
+        )}
+        {showGameEdition && (
+          <a href="#" style={{ color: 'white' }}>
+            Посмотреть версию издания
+          </a>
+        )}
+        {showGame && (
+          <a href="#" style={{ color: 'white' }}>
+            Посмотреть игру
+          </a>
+        )}
       </div>
-      
+
       <div className={styles.footer}>
         <div className={styles.langContainer}>
           <span
@@ -47,6 +103,17 @@ const ProfileCheckCard: React.FC = () => {
           <TelegramAnimation />
         </div>
       </div>
+      {showClose && (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <a href="#" style={{ color: 'white', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <span>Закрыть</span>
+          </a>
+        </div>
+      )}
     </div>
   );
 };

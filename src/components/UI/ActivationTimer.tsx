@@ -9,6 +9,7 @@ const ActivationTimer: React.FC<ActivationTimerProps> = ({ time }) => {
   return (
     <div className={styles.activationTimer}>
       <span>Время на&nbsp;активацию {time}</span>
+      <div className={styles.badgeIcon}>?</div>
     </div>
   );
 };

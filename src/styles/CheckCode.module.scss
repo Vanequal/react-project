@@ -27,6 +27,7 @@
   .confirmSendingPage {
     background-size: contain;
     background-position: top center;
+    position: absolute;
     overflow-x: hidden;
     box-sizing: border-box;
     min-height: 100vh;
@@ -39,7 +40,7 @@
       left: 0;
       right: 0;
       height: 350px;
-      background: linear-gradient(180deg, rgba(80, 20, 140, 0.5) 0%, rgba(60, 10, 100, 0.2) 100%);
+      background: linear-gradient(180deg, rgba(30, 80, 30, 0.5) 0%, rgba(20, 60, 20, 0.2) 100%);
       z-index: 1;
     }
 
@@ -56,30 +57,26 @@
     }
   }
 
-  /* Мобильный header: логотип слева и по центру текст */
   .mobileHeader {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     position: relative;
     z-index: 2;
     padding: 10px;
-  }
 
-  .headerLeft {
-    position: absolute;
-    left: 0;
-
-    img {
-      width: 60px; // делаем лого меньше
+    svg {
+      width: 24px;
+      height: 24px;
+      stroke: white;
+      cursor: pointer;
     }
   }
 
-  .headerCenter {
-    text-align: center;
-    color: white;
-    font-size: 16px;
-    margin: 0;
+  .headerLeft {
+    img {
+      width: 60px;
+    }
   }
 
   .mobileContent {
@@ -91,9 +88,19 @@
     padding: 0 20px;
 
     .avatarWrapper {
-      margin: 20px 0;
+      position: relative;
+      margin: 30px 0;
 
-      img {
+      .avatar {
+        width: 180px;
+        height: 180px;
+      }
+
+      .giftAvatarOverlay {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100px;
         height: 100px;
         border-radius: 50%;
@@ -160,7 +167,7 @@
         white-space: nowrap;
 
         &.active {
-          color: $secondary-color; 
+          color: $secondary-color;
           background-color: #2B1734;
           padding: 10px;
           border-radius: 5px;
